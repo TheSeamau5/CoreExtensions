@@ -1,7 +1,7 @@
 [
 {
   "name": "CoreExtensions.Array",
-  "comment": "Extension to the Core Array Library. Includes several useful functions\neither missing or simply not present from the core Array Library. The goal is\nto make arrays as easy to use as lists.\n\n# Basics\n@docs member, indexOf, reverse\n\n# Create arrays\n@docs initialize2, initialize3\n\n# Putting arrays together\n@docs intersperse, concat\n\n# Map ALL the things!\n@docs map2, map3, map4, map5\n\n# Zip ALL the things!\n@docs zip, zip3, zip4, zip5\n\n# Unzip ALL the things!\n@docs unzip, unzip3, unzip4, unzip5\n\n# Special maps\n@docs concatMap",
+  "comment": "Extension to the Core Array Library. Includes several useful functions\neither missing or simply not present from the core Array Library. The goal is\nto make arrays as easy to use as lists.\n\n# Basics\n@docs head, tail, isEmpty, member, indexOf, reverse\n\n# Create arrays\n@docs initialize2, initialize3\n\n# Putting arrays together\n@docs intersperse, concat\n\n# Map ALL the things!\n@docs map2, map3, map4, map5\n\n# Zip ALL the things!\n@docs zip, zip3, zip4, zip5\n\n# Unzip ALL the things!\n@docs unzip, unzip3, unzip4, unzip5\n\n# Special maps\n@docs concatMap\n\n# Special folds\n@docs foldlSafe, foldrSafe, sum, product, minimum, maximum",
   "aliases": [],
   "types": [],
   "values": [
@@ -100,6 +100,147 @@
               }
             ]
           }
+        }
+      }
+    },
+    {
+      "name": "foldlSafe",
+      "comment": "",
+      "type": {
+        "tag": "lambda",
+        "in": {
+          "tag": "lambda",
+          "in": {
+            "tag": "var",
+            "name": "a"
+          },
+          "out": {
+            "tag": "lambda",
+            "in": {
+              "tag": "var",
+              "name": "a"
+            },
+            "out": {
+              "tag": "var",
+              "name": "a"
+            }
+          }
+        },
+        "out": {
+          "tag": "lambda",
+          "in": {
+            "tag": "app",
+            "func": {
+              "tag": "type",
+              "name": "Array"
+            },
+            "args": [
+              {
+                "tag": "var",
+                "name": "a"
+              }
+            ]
+          },
+          "out": {
+            "tag": "app",
+            "func": {
+              "tag": "type",
+              "name": "Maybe"
+            },
+            "args": [
+              {
+                "tag": "var",
+                "name": "a"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "foldrSafe",
+      "comment": "",
+      "type": {
+        "tag": "lambda",
+        "in": {
+          "tag": "lambda",
+          "in": {
+            "tag": "var",
+            "name": "a"
+          },
+          "out": {
+            "tag": "lambda",
+            "in": {
+              "tag": "var",
+              "name": "a"
+            },
+            "out": {
+              "tag": "var",
+              "name": "a"
+            }
+          }
+        },
+        "out": {
+          "tag": "lambda",
+          "in": {
+            "tag": "app",
+            "func": {
+              "tag": "type",
+              "name": "Array"
+            },
+            "args": [
+              {
+                "tag": "var",
+                "name": "a"
+              }
+            ]
+          },
+          "out": {
+            "tag": "app",
+            "func": {
+              "tag": "type",
+              "name": "Maybe"
+            },
+            "args": [
+              {
+                "tag": "var",
+                "name": "a"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "head",
+      "comment": "",
+      "type": {
+        "tag": "lambda",
+        "in": {
+          "tag": "app",
+          "func": {
+            "tag": "type",
+            "name": "Array"
+          },
+          "args": [
+            {
+              "tag": "var",
+              "name": "a"
+            }
+          ]
+        },
+        "out": {
+          "tag": "app",
+          "func": {
+            "tag": "type",
+            "name": "Maybe"
+          },
+          "args": [
+            {
+              "tag": "var",
+              "name": "a"
+            }
+          ]
         }
       }
     },
@@ -325,6 +466,30 @@
               }
             ]
           }
+        }
+      }
+    },
+    {
+      "name": "isEmpty",
+      "comment": "",
+      "type": {
+        "tag": "lambda",
+        "in": {
+          "tag": "app",
+          "func": {
+            "tag": "type",
+            "name": "Array"
+          },
+          "args": [
+            {
+              "tag": "var",
+              "name": "a"
+            }
+          ]
+        },
+        "out": {
+          "tag": "type",
+          "name": "Bool"
         }
       }
     },
@@ -747,6 +912,39 @@
       }
     },
     {
+      "name": "maximum",
+      "comment": "",
+      "type": {
+        "tag": "lambda",
+        "in": {
+          "tag": "app",
+          "func": {
+            "tag": "type",
+            "name": "Array"
+          },
+          "args": [
+            {
+              "tag": "var",
+              "name": "comparable"
+            }
+          ]
+        },
+        "out": {
+          "tag": "app",
+          "func": {
+            "tag": "type",
+            "name": "Maybe"
+          },
+          "args": [
+            {
+              "tag": "var",
+              "name": "comparable"
+            }
+          ]
+        }
+      }
+    },
+    {
       "name": "member",
       "comment": "",
       "type": {
@@ -778,8 +976,122 @@
       }
     },
     {
+      "name": "minimum",
+      "comment": "",
+      "type": {
+        "tag": "lambda",
+        "in": {
+          "tag": "app",
+          "func": {
+            "tag": "type",
+            "name": "Array"
+          },
+          "args": [
+            {
+              "tag": "var",
+              "name": "comparable"
+            }
+          ]
+        },
+        "out": {
+          "tag": "app",
+          "func": {
+            "tag": "type",
+            "name": "Maybe"
+          },
+          "args": [
+            {
+              "tag": "var",
+              "name": "comparable"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "product",
+      "comment": "",
+      "type": {
+        "tag": "lambda",
+        "in": {
+          "tag": "app",
+          "func": {
+            "tag": "type",
+            "name": "Array"
+          },
+          "args": [
+            {
+              "tag": "var",
+              "name": "number"
+            }
+          ]
+        },
+        "out": {
+          "tag": "var",
+          "name": "number"
+        }
+      }
+    },
+    {
       "name": "reverse",
       "comment": "Reverse an array\n\n    reverse (fromList [1,2,3]) == fromList [3,2,1]",
+      "type": {
+        "tag": "lambda",
+        "in": {
+          "tag": "app",
+          "func": {
+            "tag": "type",
+            "name": "Array"
+          },
+          "args": [
+            {
+              "tag": "var",
+              "name": "a"
+            }
+          ]
+        },
+        "out": {
+          "tag": "app",
+          "func": {
+            "tag": "type",
+            "name": "Array"
+          },
+          "args": [
+            {
+              "tag": "var",
+              "name": "a"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "sum",
+      "comment": "",
+      "type": {
+        "tag": "lambda",
+        "in": {
+          "tag": "app",
+          "func": {
+            "tag": "type",
+            "name": "Array"
+          },
+          "args": [
+            {
+              "tag": "var",
+              "name": "number"
+            }
+          ]
+        },
+        "out": {
+          "tag": "var",
+          "name": "number"
+        }
+      }
+    },
+    {
+      "name": "tail",
+      "comment": "",
       "type": {
         "tag": "lambda",
         "in": {

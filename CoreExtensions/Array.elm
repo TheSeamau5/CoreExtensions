@@ -28,6 +28,8 @@ to make arrays as easy to use as lists.
 # Special folds
 @docs foldlSafe, foldrSafe, sum, product, minimum, maximum
 
+# Sort
+@docs sort, sortBy, sortWith
 -}
 
 import CoreExtensions.Basics (..)
@@ -37,7 +39,7 @@ head : Array a -> Maybe a
 head = get 0
 
 tail : Array a -> Array a
-tail array = slice 1 (length array - 1) array
+tail array = slice 1 (length array) array
 
 isEmpty : Array a -> Bool
 isEmpty array = (length array) == 0
@@ -383,3 +385,46 @@ maximum = foldlSafe max
 
 minimum : Array comparable -> Maybe comparable
 minimum = foldlSafe min
+
+
+{-| Sort values from lowest to highest
+
+    sort (fromList [3,1,5]) == fromList [1,3,5]
+-}
+sort : Array comparable -> Array comparable
+sort = sortWith compare
+
+-- ;)
+sneakyCompose : (a -> b) -> (b -> b -> Order) -> (a -> a -> Order)
+sneakyCompose accessor comparisonFunction x y =
+  comparisonFunction (accessor x) (accessor y)
+
+
+{-| Sort values by a derived property.
+
+    alice = { name="Alice", height=1.62 }
+    bob   = { name="Bob"  , height=1.85 }
+    chuck = { name="Chuck", height=1.76 }
+    sortBy .name   (fromList [chuck,alice,bob]) == fromList [alice,bob,chuck]
+    sortBy .height (fromList [chuck,alice,bob]) == fromList [alice,chuck,bob]
+    sortBy String.length (fromList ["mouse","cat"]) == fromList ["cat","mouse"]
+-}
+sortBy : (a -> comparable) -> Array a -> Array a
+sortBy accessor = sortWith (sneakyCompose accessor compare)
+
+
+sortWith : (a -> a -> Order) -> Array a -> Array a
+sortWith comparisonFunction array =
+  case head array of
+    Nothing -> empty
+    Just first ->
+      let lesserFilter x =
+            (\l -> comparisonFunction l x == LT ||
+                   comparisonFunction l x == EQ)
+          greaterFilter x =
+            (\l -> comparisonFunction l x == GT)
+          last = tail array
+          lesser = sortWith comparisonFunction (lesserFilter first last)
+          equal = fromList [first]
+          greater = sortWith comparisonFunction (greaterFilter first last)
+      in lesser `append` equal `append` greater
