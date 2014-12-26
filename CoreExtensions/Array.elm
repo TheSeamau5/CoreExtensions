@@ -407,14 +407,29 @@ sneakyCompose accessor comparisonFunction x y =
     alice = { name="Alice", height=1.62 }
     bob   = { name="Bob"  , height=1.85 }
     chuck = { name="Chuck", height=1.76 }
+
     sortBy .name   (fromList [chuck,alice,bob]) == fromList [alice,bob,chuck]
     sortBy .height (fromList [chuck,alice,bob]) == fromList [alice,chuck,bob]
+
     sortBy String.length (fromList ["mouse","cat"]) == fromList ["cat","mouse"]
 -}
 sortBy : (a -> comparable) -> Array a -> Array a
 sortBy accessor = sortWith (sneakyCompose accessor compare)
 
 
+{-| Sort values with a custom comparison function.
+
+    sortWith flippedComparison (fromList [1..5]) == fromList [5,4,3,2,1]
+
+    flippedComparison a b =
+      case compare a b of
+        LT -> GT
+        EQ -> EQ
+        GT -> LT
+
+This is also the most general sort function, allowing you
+to define any other: `sort == sortWith compare`
+-}
 sortWith : (a -> a -> Order) -> Array a -> Array a
 sortWith comparisonFunction array =
   case head array of
