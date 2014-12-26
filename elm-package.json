@@ -1,0 +1,17 @@
+{
+  "version" : "1.0.0",
+  "summary" : "Extensions to Core Elm Library",
+  "repository" : "",
+  "license" : "BSD3",
+  "source-directories" : [
+    "."
+  ],
+  "exposed-modules" : [
+    "CoreExtensions.Array"
+  ],
+  "dependencies" : {
+    "elm-lang/core" : "1.0.0 <= v < 2.0.0"
+  }
+
+
+}
