@@ -1,7 +1,7 @@
 {
   "version" : "1.0.0",
   "summary" : "Extensions to Core Elm Library",
-  "repository" : "",
+  "repository" : "https://github.com/TheSeamau5/CoreExtensions.git",
   "license" : "BSD3",
   "source-directories" : [
     "."
