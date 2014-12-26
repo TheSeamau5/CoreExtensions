@@ -13,8 +13,14 @@ to make arrays as easy to use as lists.
 # Putting arrays together
 @docs intersperse, concat
 
-# All the maps!
+# Map ALL the things!
 @docs map2, map3, map4, map5
+
+# Zip ALL the things!
+@docs zip, zip3, zip4, zip5
+
+# Unzip ALL the things!
+@docs unzip, unzip3, unzip4, unzip5
 
 # Special maps
 @docs concatMap
@@ -180,7 +186,7 @@ map2 f array1 array2 =
 
             _ -> empty
 
-  in iterate maxIterations
+  in iterate (maxIterations - 1)
 
 
 
@@ -201,7 +207,7 @@ map3 f array1 array2 array3 =
 
             _ -> empty
 
-  in iterate maxIterations
+  in iterate (maxIterations - 1)
 
 
 
@@ -226,7 +232,7 @@ map4 f array1 array2 array3 array4 =
 
             _ -> empty
 
-  in iterate maxIterations
+  in iterate (maxIterations - 1)
 
 
 map5 : (a -> b -> c -> d -> e -> result) ->
@@ -256,3 +262,84 @@ map5 f array1 array2 array3 array4 array5 =
               _ -> empty
 
   in iterate (maxIterations - 1)
+
+
+{-| `zip` takes two arrays and returns an array of corresponding pairs.
+
+    zip (fromList [1,2,3]) (fromList [2,3,4]) ==
+      fromList [(1,2), (2,3), (3,4)]
+-}
+zip : Array a -> Array b -> Array (a,b)
+zip = map2 (,)
+
+
+{-| `zip3` takes three arrays and returns an array of triples.
+Analogous to `zip`.
+-}
+zip3 : Array a -> Array b -> Array c -> Array (a,b,c)
+zip3 = map3 (,,)
+
+
+{-| `zip4` takes four arrays and returns an array of quadruples.
+Analogous to `zip`.
+-}
+zip4 : Array a -> Array b -> Array c -> Array d -> Array (a,b,c,d)
+zip4 = map4 (,,,)
+
+
+{-| `zip5` takes five arrays and returns an array of quintuples.
+Analogous to `zip`.
+-}
+zip5 : Array a -> Array b -> Array c -> Array d -> Array e -> Array (a,b,c,d,e)
+zip5 = map5 (,,,,)
+
+
+{-|`unzip` transforms an array of pairs into an array of first
+components and an array of second components.
+-}
+unzip : Array (a,b) -> (Array a, Array b)
+unzip array =
+  (map fst array, map snd array)
+
+
+{-|`unzip3` takes an array of triples and returns three arrays.
+Analogous to `unzip`.
+-}
+unzip3 : Array (a,b,c) -> (Array a, Array b, Array c)
+unzip3 array =
+  let first  (x,y,z) = x
+      second (x,y,z) = y
+      third  (x,y,z) = z
+  in
+    (map first array, map second array, map third array)
+
+
+{-|`unzip4` takes an array of quadruples and returns four arrays.
+Analogous to `unzip`.
+-}
+unzip4 : Array (a,b,c,d) -> (Array a, Array b, Array c, Array d)
+unzip4 array =
+  let first  (a,b,c,d) = a
+      second (a,b,c,d) = b
+      third  (a,b,c,d) = c
+      fourth (a,b,c,d) = d
+  in
+    (map first array, map second array, map third array, map fourth array)
+
+
+{-|`unzip5` takes an array of quintuples and returns five arrays.
+Analogous to `unzip`.
+-}
+unzip5 : Array (a,b,c,d,e) -> (Array a, Array b, Array c, Array d, Array e)
+unzip5 array =
+  let first  (a,b,c,d,e) = a
+      second (a,b,c,d,e) = b
+      third  (a,b,c,d,e) = c
+      fourth (a,b,c,d,e) = d
+      fifth  (a,b,c,d,e) = e
+  in
+    (map first  array,
+     map second array,
+     map third  array,
+     map fourth array,
+     map fifth  array)

@@ -1,7 +1,7 @@
 [
 {
   "name": "CoreExtensions.Array",
-  "comment": "Extension to the Core Array Library. Includes several useful functions\neither missing or simply not present from the core Array Library. The goal is\nto make arrays as easy to use as lists.\n\n# Basics\n@docs member, indexOf, reverse\n\n# Create arrays\n@docs initialize2, initialize3\n\n# Putting arrays together\n@docs intersperse, concat\n\n# All the maps!\n@docs map2, map3, map4, map5\n\n# Special maps\n@docs concatMap",
+  "comment": "Extension to the Core Array Library. Includes several useful functions\neither missing or simply not present from the core Array Library. The goal is\nto make arrays as easy to use as lists.\n\n# Basics\n@docs member, indexOf, reverse\n\n# Create arrays\n@docs initialize2, initialize3\n\n# Putting arrays together\n@docs intersperse, concat\n\n# Map ALL the things!\n@docs map2, map3, map4, map5\n\n# Zip ALL the things!\n@docs zip, zip3, zip4, zip5\n\n# Unzip ALL the things!\n@docs unzip, unzip3, unzip4, unzip5\n\n# Special maps\n@docs concatMap",
   "aliases": [],
   "types": [],
   "values": [
@@ -807,6 +807,748 @@
               "name": "a"
             }
           ]
+        }
+      }
+    },
+    {
+      "name": "unzip",
+      "comment": "`unzip` transforms an array of pairs into an array of first\ncomponents and an array of second components.",
+      "type": {
+        "tag": "lambda",
+        "in": {
+          "tag": "app",
+          "func": {
+            "tag": "type",
+            "name": "Array"
+          },
+          "args": [
+            {
+              "tag": "app",
+              "func": {
+                "tag": "type",
+                "name": "_Tuple2"
+              },
+              "args": [
+                {
+                  "tag": "var",
+                  "name": "a"
+                },
+                {
+                  "tag": "var",
+                  "name": "b"
+                }
+              ]
+            }
+          ]
+        },
+        "out": {
+          "tag": "app",
+          "func": {
+            "tag": "type",
+            "name": "_Tuple2"
+          },
+          "args": [
+            {
+              "tag": "app",
+              "func": {
+                "tag": "type",
+                "name": "Array"
+              },
+              "args": [
+                {
+                  "tag": "var",
+                  "name": "a"
+                }
+              ]
+            },
+            {
+              "tag": "app",
+              "func": {
+                "tag": "type",
+                "name": "Array"
+              },
+              "args": [
+                {
+                  "tag": "var",
+                  "name": "b"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "unzip3",
+      "comment": "`unzip3` takes an array of triples and returns three arrays.\nAnalogous to `unzip`.",
+      "type": {
+        "tag": "lambda",
+        "in": {
+          "tag": "app",
+          "func": {
+            "tag": "type",
+            "name": "Array"
+          },
+          "args": [
+            {
+              "tag": "app",
+              "func": {
+                "tag": "type",
+                "name": "_Tuple3"
+              },
+              "args": [
+                {
+                  "tag": "var",
+                  "name": "a"
+                },
+                {
+                  "tag": "var",
+                  "name": "b"
+                },
+                {
+                  "tag": "var",
+                  "name": "c"
+                }
+              ]
+            }
+          ]
+        },
+        "out": {
+          "tag": "app",
+          "func": {
+            "tag": "type",
+            "name": "_Tuple3"
+          },
+          "args": [
+            {
+              "tag": "app",
+              "func": {
+                "tag": "type",
+                "name": "Array"
+              },
+              "args": [
+                {
+                  "tag": "var",
+                  "name": "a"
+                }
+              ]
+            },
+            {
+              "tag": "app",
+              "func": {
+                "tag": "type",
+                "name": "Array"
+              },
+              "args": [
+                {
+                  "tag": "var",
+                  "name": "b"
+                }
+              ]
+            },
+            {
+              "tag": "app",
+              "func": {
+                "tag": "type",
+                "name": "Array"
+              },
+              "args": [
+                {
+                  "tag": "var",
+                  "name": "c"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "unzip4",
+      "comment": "`unzip4` takes an array of quadruples and returns four arrays.\nAnalogous to `unzip`.",
+      "type": {
+        "tag": "lambda",
+        "in": {
+          "tag": "app",
+          "func": {
+            "tag": "type",
+            "name": "Array"
+          },
+          "args": [
+            {
+              "tag": "app",
+              "func": {
+                "tag": "type",
+                "name": "_Tuple4"
+              },
+              "args": [
+                {
+                  "tag": "var",
+                  "name": "a"
+                },
+                {
+                  "tag": "var",
+                  "name": "b"
+                },
+                {
+                  "tag": "var",
+                  "name": "c"
+                },
+                {
+                  "tag": "var",
+                  "name": "d"
+                }
+              ]
+            }
+          ]
+        },
+        "out": {
+          "tag": "app",
+          "func": {
+            "tag": "type",
+            "name": "_Tuple4"
+          },
+          "args": [
+            {
+              "tag": "app",
+              "func": {
+                "tag": "type",
+                "name": "Array"
+              },
+              "args": [
+                {
+                  "tag": "var",
+                  "name": "a"
+                }
+              ]
+            },
+            {
+              "tag": "app",
+              "func": {
+                "tag": "type",
+                "name": "Array"
+              },
+              "args": [
+                {
+                  "tag": "var",
+                  "name": "b"
+                }
+              ]
+            },
+            {
+              "tag": "app",
+              "func": {
+                "tag": "type",
+                "name": "Array"
+              },
+              "args": [
+                {
+                  "tag": "var",
+                  "name": "c"
+                }
+              ]
+            },
+            {
+              "tag": "app",
+              "func": {
+                "tag": "type",
+                "name": "Array"
+              },
+              "args": [
+                {
+                  "tag": "var",
+                  "name": "d"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "unzip5",
+      "comment": "`unzip5` takes an array of quintuples and returns five arrays.\nAnalogous to `unzip`.",
+      "type": {
+        "tag": "lambda",
+        "in": {
+          "tag": "app",
+          "func": {
+            "tag": "type",
+            "name": "Array"
+          },
+          "args": [
+            {
+              "tag": "app",
+              "func": {
+                "tag": "type",
+                "name": "_Tuple5"
+              },
+              "args": [
+                {
+                  "tag": "var",
+                  "name": "a"
+                },
+                {
+                  "tag": "var",
+                  "name": "b"
+                },
+                {
+                  "tag": "var",
+                  "name": "c"
+                },
+                {
+                  "tag": "var",
+                  "name": "d"
+                },
+                {
+                  "tag": "var",
+                  "name": "e"
+                }
+              ]
+            }
+          ]
+        },
+        "out": {
+          "tag": "app",
+          "func": {
+            "tag": "type",
+            "name": "_Tuple5"
+          },
+          "args": [
+            {
+              "tag": "app",
+              "func": {
+                "tag": "type",
+                "name": "Array"
+              },
+              "args": [
+                {
+                  "tag": "var",
+                  "name": "a"
+                }
+              ]
+            },
+            {
+              "tag": "app",
+              "func": {
+                "tag": "type",
+                "name": "Array"
+              },
+              "args": [
+                {
+                  "tag": "var",
+                  "name": "b"
+                }
+              ]
+            },
+            {
+              "tag": "app",
+              "func": {
+                "tag": "type",
+                "name": "Array"
+              },
+              "args": [
+                {
+                  "tag": "var",
+                  "name": "c"
+                }
+              ]
+            },
+            {
+              "tag": "app",
+              "func": {
+                "tag": "type",
+                "name": "Array"
+              },
+              "args": [
+                {
+                  "tag": "var",
+                  "name": "d"
+                }
+              ]
+            },
+            {
+              "tag": "app",
+              "func": {
+                "tag": "type",
+                "name": "Array"
+              },
+              "args": [
+                {
+                  "tag": "var",
+                  "name": "e"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "zip",
+      "comment": "`zip` takes two arrays and returns an array of corresponding pairs.\n\n    zip (fromList [1,2,3]) (fromList [2,3,4]) ==\n      fromList [(1,2), (2,3), (3,4)]",
+      "type": {
+        "tag": "lambda",
+        "in": {
+          "tag": "app",
+          "func": {
+            "tag": "type",
+            "name": "Array"
+          },
+          "args": [
+            {
+              "tag": "var",
+              "name": "a"
+            }
+          ]
+        },
+        "out": {
+          "tag": "lambda",
+          "in": {
+            "tag": "app",
+            "func": {
+              "tag": "type",
+              "name": "Array"
+            },
+            "args": [
+              {
+                "tag": "var",
+                "name": "b"
+              }
+            ]
+          },
+          "out": {
+            "tag": "app",
+            "func": {
+              "tag": "type",
+              "name": "Array"
+            },
+            "args": [
+              {
+                "tag": "app",
+                "func": {
+                  "tag": "type",
+                  "name": "_Tuple2"
+                },
+                "args": [
+                  {
+                    "tag": "var",
+                    "name": "a"
+                  },
+                  {
+                    "tag": "var",
+                    "name": "b"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "zip3",
+      "comment": "`zip3` takes three arrays and returns an array of triples.\nAnalogous to `zip`.",
+      "type": {
+        "tag": "lambda",
+        "in": {
+          "tag": "app",
+          "func": {
+            "tag": "type",
+            "name": "Array"
+          },
+          "args": [
+            {
+              "tag": "var",
+              "name": "a"
+            }
+          ]
+        },
+        "out": {
+          "tag": "lambda",
+          "in": {
+            "tag": "app",
+            "func": {
+              "tag": "type",
+              "name": "Array"
+            },
+            "args": [
+              {
+                "tag": "var",
+                "name": "b"
+              }
+            ]
+          },
+          "out": {
+            "tag": "lambda",
+            "in": {
+              "tag": "app",
+              "func": {
+                "tag": "type",
+                "name": "Array"
+              },
+              "args": [
+                {
+                  "tag": "var",
+                  "name": "c"
+                }
+              ]
+            },
+            "out": {
+              "tag": "app",
+              "func": {
+                "tag": "type",
+                "name": "Array"
+              },
+              "args": [
+                {
+                  "tag": "app",
+                  "func": {
+                    "tag": "type",
+                    "name": "_Tuple3"
+                  },
+                  "args": [
+                    {
+                      "tag": "var",
+                      "name": "a"
+                    },
+                    {
+                      "tag": "var",
+                      "name": "b"
+                    },
+                    {
+                      "tag": "var",
+                      "name": "c"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "zip4",
+      "comment": "`zip4` takes four arrays and returns an array of quadruples.\nAnalogous to `zip`.",
+      "type": {
+        "tag": "lambda",
+        "in": {
+          "tag": "app",
+          "func": {
+            "tag": "type",
+            "name": "Array"
+          },
+          "args": [
+            {
+              "tag": "var",
+              "name": "a"
+            }
+          ]
+        },
+        "out": {
+          "tag": "lambda",
+          "in": {
+            "tag": "app",
+            "func": {
+              "tag": "type",
+              "name": "Array"
+            },
+            "args": [
+              {
+                "tag": "var",
+                "name": "b"
+              }
+            ]
+          },
+          "out": {
+            "tag": "lambda",
+            "in": {
+              "tag": "app",
+              "func": {
+                "tag": "type",
+                "name": "Array"
+              },
+              "args": [
+                {
+                  "tag": "var",
+                  "name": "c"
+                }
+              ]
+            },
+            "out": {
+              "tag": "lambda",
+              "in": {
+                "tag": "app",
+                "func": {
+                  "tag": "type",
+                  "name": "Array"
+                },
+                "args": [
+                  {
+                    "tag": "var",
+                    "name": "d"
+                  }
+                ]
+              },
+              "out": {
+                "tag": "app",
+                "func": {
+                  "tag": "type",
+                  "name": "Array"
+                },
+                "args": [
+                  {
+                    "tag": "app",
+                    "func": {
+                      "tag": "type",
+                      "name": "_Tuple4"
+                    },
+                    "args": [
+                      {
+                        "tag": "var",
+                        "name": "a"
+                      },
+                      {
+                        "tag": "var",
+                        "name": "b"
+                      },
+                      {
+                        "tag": "var",
+                        "name": "c"
+                      },
+                      {
+                        "tag": "var",
+                        "name": "d"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "zip5",
+      "comment": "`zip5` takes five arrays and returns an array of quintuples.\nAnalogous to `zip`.",
+      "type": {
+        "tag": "lambda",
+        "in": {
+          "tag": "app",
+          "func": {
+            "tag": "type",
+            "name": "Array"
+          },
+          "args": [
+            {
+              "tag": "var",
+              "name": "a"
+            }
+          ]
+        },
+        "out": {
+          "tag": "lambda",
+          "in": {
+            "tag": "app",
+            "func": {
+              "tag": "type",
+              "name": "Array"
+            },
+            "args": [
+              {
+                "tag": "var",
+                "name": "b"
+              }
+            ]
+          },
+          "out": {
+            "tag": "lambda",
+            "in": {
+              "tag": "app",
+              "func": {
+                "tag": "type",
+                "name": "Array"
+              },
+              "args": [
+                {
+                  "tag": "var",
+                  "name": "c"
+                }
+              ]
+            },
+            "out": {
+              "tag": "lambda",
+              "in": {
+                "tag": "app",
+                "func": {
+                  "tag": "type",
+                  "name": "Array"
+                },
+                "args": [
+                  {
+                    "tag": "var",
+                    "name": "d"
+                  }
+                ]
+              },
+              "out": {
+                "tag": "lambda",
+                "in": {
+                  "tag": "app",
+                  "func": {
+                    "tag": "type",
+                    "name": "Array"
+                  },
+                  "args": [
+                    {
+                      "tag": "var",
+                      "name": "e"
+                    }
+                  ]
+                },
+                "out": {
+                  "tag": "app",
+                  "func": {
+                    "tag": "type",
+                    "name": "Array"
+                  },
+                  "args": [
+                    {
+                      "tag": "app",
+                      "func": {
+                        "tag": "type",
+                        "name": "_Tuple5"
+                      },
+                      "args": [
+                        {
+                          "tag": "var",
+                          "name": "a"
+                        },
+                        {
+                          "tag": "var",
+                          "name": "b"
+                        },
+                        {
+                          "tag": "var",
+                          "name": "c"
+                        },
+                        {
+                          "tag": "var",
+                          "name": "d"
+                        },
+                        {
+                          "tag": "var",
+                          "name": "e"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          }
         }
       }
     }
