@@ -397,9 +397,8 @@ sort : Array comparable -> Array comparable
 sort = sortWith compare
 
 -- ;)
-sneakyCompose : (a -> b) -> (b -> b -> Order) -> (a -> a -> Order)
-sneakyCompose accessor comparisonFunction x y =
-  comparisonFunction (accessor x) (accessor y)
+sneakyCompose : (a -> b) -> (b -> b -> c) -> (a -> a -> c)
+sneakyCompose f g x y = g (f x) (f y)
 
 
 {-| Sort values by a derived property.
