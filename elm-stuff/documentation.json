@@ -1,0 +1,816 @@
+[
+{
+  "name": "CoreExtensions.Array",
+  "comment": "Extension to the Core Array Library. Includes several useful functions\neither missing or simply not present from the core Array Library. The goal is\nto make arrays as easy to use as lists.\n\n# Basics\n@docs member, indexOf, reverse\n\n# Create arrays\n@docs initialize2, initialize3\n\n# Putting arrays together\n@docs intersperse, concat\n\n# All the maps!\n@docs map2, map3, map4, map5\n\n# Special maps\n@docs concatMap",
+  "aliases": [],
+  "types": [],
+  "values": [
+    {
+      "name": "concat",
+      "comment": "Concatenate a bunch of arrays into a single array:\n\n    concat (fromList [(fromList [1,2]), (fromList [3,4])]) ==\n      fromList [1,2,3,4]",
+      "type": {
+        "tag": "lambda",
+        "in": {
+          "tag": "app",
+          "func": {
+            "tag": "type",
+            "name": "Array"
+          },
+          "args": [
+            {
+              "tag": "app",
+              "func": {
+                "tag": "type",
+                "name": "Array"
+              },
+              "args": [
+                {
+                  "tag": "var",
+                  "name": "a"
+                }
+              ]
+            }
+          ]
+        },
+        "out": {
+          "tag": "app",
+          "func": {
+            "tag": "type",
+            "name": "Array"
+          },
+          "args": [
+            {
+              "tag": "var",
+              "name": "a"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "concatMap",
+      "comment": "Map a given function onto an array and flatten the result arrays.\n\n    concatMap f array == concat (map f array)",
+      "type": {
+        "tag": "lambda",
+        "in": {
+          "tag": "lambda",
+          "in": {
+            "tag": "var",
+            "name": "a"
+          },
+          "out": {
+            "tag": "app",
+            "func": {
+              "tag": "type",
+              "name": "Array"
+            },
+            "args": [
+              {
+                "tag": "var",
+                "name": "b"
+              }
+            ]
+          }
+        },
+        "out": {
+          "tag": "lambda",
+          "in": {
+            "tag": "app",
+            "func": {
+              "tag": "type",
+              "name": "Array"
+            },
+            "args": [
+              {
+                "tag": "var",
+                "name": "a"
+              }
+            ]
+          },
+          "out": {
+            "tag": "app",
+            "func": {
+              "tag": "type",
+              "name": "Array"
+            },
+            "args": [
+              {
+                "tag": "var",
+                "name": "b"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "indexOf",
+      "comment": "Get the index of an element in an array.\nReturns the first index if the element is duplicated in the array.\n\n    indexOf 2 (fromList [3,4,5,2,1,2]) == Just 3\n\n    indexOf 1 (fromList [2,3,4]) == Nothing",
+      "type": {
+        "tag": "lambda",
+        "in": {
+          "tag": "var",
+          "name": "a"
+        },
+        "out": {
+          "tag": "lambda",
+          "in": {
+            "tag": "app",
+            "func": {
+              "tag": "type",
+              "name": "Array"
+            },
+            "args": [
+              {
+                "tag": "var",
+                "name": "a"
+              }
+            ]
+          },
+          "out": {
+            "tag": "app",
+            "func": {
+              "tag": "type",
+              "name": "Maybe"
+            },
+            "args": [
+              {
+                "tag": "type",
+                "name": "Int"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "initialize2",
+      "comment": "Initialize a 2 dimensional array. `initialize n m f` creates an `n x m`\narray with the element at index `(i,j)` initialized to the result of `(f i j)`\n\n    initialize2 2 3 (,) ==\n      fromList [fromList [(0,0), (0,1), (0,2)],\n                fromList [(1,0), (1,1), (1,2)]]",
+      "type": {
+        "tag": "lambda",
+        "in": {
+          "tag": "type",
+          "name": "Int"
+        },
+        "out": {
+          "tag": "lambda",
+          "in": {
+            "tag": "type",
+            "name": "Int"
+          },
+          "out": {
+            "tag": "lambda",
+            "in": {
+              "tag": "lambda",
+              "in": {
+                "tag": "type",
+                "name": "Int"
+              },
+              "out": {
+                "tag": "lambda",
+                "in": {
+                  "tag": "type",
+                  "name": "Int"
+                },
+                "out": {
+                  "tag": "var",
+                  "name": "a"
+                }
+              }
+            },
+            "out": {
+              "tag": "app",
+              "func": {
+                "tag": "type",
+                "name": "Array"
+              },
+              "args": [
+                {
+                  "tag": "app",
+                  "func": {
+                    "tag": "type",
+                    "name": "Array"
+                  },
+                  "args": [
+                    {
+                      "tag": "var",
+                      "name": "a"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "initialize3",
+      "comment": "",
+      "type": {
+        "tag": "lambda",
+        "in": {
+          "tag": "type",
+          "name": "Int"
+        },
+        "out": {
+          "tag": "lambda",
+          "in": {
+            "tag": "type",
+            "name": "Int"
+          },
+          "out": {
+            "tag": "lambda",
+            "in": {
+              "tag": "type",
+              "name": "Int"
+            },
+            "out": {
+              "tag": "lambda",
+              "in": {
+                "tag": "lambda",
+                "in": {
+                  "tag": "type",
+                  "name": "Int"
+                },
+                "out": {
+                  "tag": "lambda",
+                  "in": {
+                    "tag": "type",
+                    "name": "Int"
+                  },
+                  "out": {
+                    "tag": "lambda",
+                    "in": {
+                      "tag": "type",
+                      "name": "Int"
+                    },
+                    "out": {
+                      "tag": "var",
+                      "name": "a"
+                    }
+                  }
+                }
+              },
+              "out": {
+                "tag": "app",
+                "func": {
+                  "tag": "type",
+                  "name": "Array"
+                },
+                "args": [
+                  {
+                    "tag": "app",
+                    "func": {
+                      "tag": "type",
+                      "name": "Array"
+                    },
+                    "args": [
+                      {
+                        "tag": "app",
+                        "func": {
+                          "tag": "type",
+                          "name": "Array"
+                        },
+                        "args": [
+                          {
+                            "tag": "var",
+                            "name": "a"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "intersperse",
+      "comment": "Places the given value between all members of the given array.\n\n    intersperse \"on\" (fromList [\"turtles\", \"turtles\", \"turtles\"]) ==\n      fromList [\"turtles\", \"on\", \"turtles\", \"on\", \"turtles\"]",
+      "type": {
+        "tag": "lambda",
+        "in": {
+          "tag": "var",
+          "name": "a"
+        },
+        "out": {
+          "tag": "lambda",
+          "in": {
+            "tag": "app",
+            "func": {
+              "tag": "type",
+              "name": "Array"
+            },
+            "args": [
+              {
+                "tag": "var",
+                "name": "a"
+              }
+            ]
+          },
+          "out": {
+            "tag": "app",
+            "func": {
+              "tag": "type",
+              "name": "Array"
+            },
+            "args": [
+              {
+                "tag": "var",
+                "name": "a"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "map2",
+      "comment": "Combine two arrays, combining them with the given function. If one\narray is longer, the extra elements are dropped.\n\n    map2 (+) (fromList [1,2,3]) (fromList [1,2,3,4]) ==\n      fromList [2,4,6]\n\n    map2 (,) (fromList [1,2,3]) (fromList ['a', 'b']) ==\n      fromList [(1,'a'), (2, 'b')]\n\n    pairs : Array a -\u003e Array b -\u003e Array (a,b)\n    pairs lefts rights =\n      map2 (,) lefts rights",
+      "type": {
+        "tag": "lambda",
+        "in": {
+          "tag": "lambda",
+          "in": {
+            "tag": "var",
+            "name": "a"
+          },
+          "out": {
+            "tag": "lambda",
+            "in": {
+              "tag": "var",
+              "name": "b"
+            },
+            "out": {
+              "tag": "var",
+              "name": "result"
+            }
+          }
+        },
+        "out": {
+          "tag": "lambda",
+          "in": {
+            "tag": "app",
+            "func": {
+              "tag": "type",
+              "name": "Array"
+            },
+            "args": [
+              {
+                "tag": "var",
+                "name": "a"
+              }
+            ]
+          },
+          "out": {
+            "tag": "lambda",
+            "in": {
+              "tag": "app",
+              "func": {
+                "tag": "type",
+                "name": "Array"
+              },
+              "args": [
+                {
+                  "tag": "var",
+                  "name": "b"
+                }
+              ]
+            },
+            "out": {
+              "tag": "app",
+              "func": {
+                "tag": "type",
+                "name": "Array"
+              },
+              "args": [
+                {
+                  "tag": "var",
+                  "name": "result"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "map3",
+      "comment": "",
+      "type": {
+        "tag": "lambda",
+        "in": {
+          "tag": "lambda",
+          "in": {
+            "tag": "var",
+            "name": "a"
+          },
+          "out": {
+            "tag": "lambda",
+            "in": {
+              "tag": "var",
+              "name": "b"
+            },
+            "out": {
+              "tag": "lambda",
+              "in": {
+                "tag": "var",
+                "name": "c"
+              },
+              "out": {
+                "tag": "var",
+                "name": "result"
+              }
+            }
+          }
+        },
+        "out": {
+          "tag": "lambda",
+          "in": {
+            "tag": "app",
+            "func": {
+              "tag": "type",
+              "name": "Array"
+            },
+            "args": [
+              {
+                "tag": "var",
+                "name": "a"
+              }
+            ]
+          },
+          "out": {
+            "tag": "lambda",
+            "in": {
+              "tag": "app",
+              "func": {
+                "tag": "type",
+                "name": "Array"
+              },
+              "args": [
+                {
+                  "tag": "var",
+                  "name": "b"
+                }
+              ]
+            },
+            "out": {
+              "tag": "lambda",
+              "in": {
+                "tag": "app",
+                "func": {
+                  "tag": "type",
+                  "name": "Array"
+                },
+                "args": [
+                  {
+                    "tag": "var",
+                    "name": "c"
+                  }
+                ]
+              },
+              "out": {
+                "tag": "app",
+                "func": {
+                  "tag": "type",
+                  "name": "Array"
+                },
+                "args": [
+                  {
+                    "tag": "var",
+                    "name": "result"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "map4",
+      "comment": "",
+      "type": {
+        "tag": "lambda",
+        "in": {
+          "tag": "lambda",
+          "in": {
+            "tag": "var",
+            "name": "a"
+          },
+          "out": {
+            "tag": "lambda",
+            "in": {
+              "tag": "var",
+              "name": "b"
+            },
+            "out": {
+              "tag": "lambda",
+              "in": {
+                "tag": "var",
+                "name": "c"
+              },
+              "out": {
+                "tag": "lambda",
+                "in": {
+                  "tag": "var",
+                  "name": "d"
+                },
+                "out": {
+                  "tag": "var",
+                  "name": "result"
+                }
+              }
+            }
+          }
+        },
+        "out": {
+          "tag": "lambda",
+          "in": {
+            "tag": "app",
+            "func": {
+              "tag": "type",
+              "name": "Array"
+            },
+            "args": [
+              {
+                "tag": "var",
+                "name": "a"
+              }
+            ]
+          },
+          "out": {
+            "tag": "lambda",
+            "in": {
+              "tag": "app",
+              "func": {
+                "tag": "type",
+                "name": "Array"
+              },
+              "args": [
+                {
+                  "tag": "var",
+                  "name": "b"
+                }
+              ]
+            },
+            "out": {
+              "tag": "lambda",
+              "in": {
+                "tag": "app",
+                "func": {
+                  "tag": "type",
+                  "name": "Array"
+                },
+                "args": [
+                  {
+                    "tag": "var",
+                    "name": "c"
+                  }
+                ]
+              },
+              "out": {
+                "tag": "lambda",
+                "in": {
+                  "tag": "app",
+                  "func": {
+                    "tag": "type",
+                    "name": "Array"
+                  },
+                  "args": [
+                    {
+                      "tag": "var",
+                      "name": "d"
+                    }
+                  ]
+                },
+                "out": {
+                  "tag": "app",
+                  "func": {
+                    "tag": "type",
+                    "name": "Array"
+                  },
+                  "args": [
+                    {
+                      "tag": "var",
+                      "name": "result"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "map5",
+      "comment": "",
+      "type": {
+        "tag": "lambda",
+        "in": {
+          "tag": "lambda",
+          "in": {
+            "tag": "var",
+            "name": "a"
+          },
+          "out": {
+            "tag": "lambda",
+            "in": {
+              "tag": "var",
+              "name": "b"
+            },
+            "out": {
+              "tag": "lambda",
+              "in": {
+                "tag": "var",
+                "name": "c"
+              },
+              "out": {
+                "tag": "lambda",
+                "in": {
+                  "tag": "var",
+                  "name": "d"
+                },
+                "out": {
+                  "tag": "lambda",
+                  "in": {
+                    "tag": "var",
+                    "name": "e"
+                  },
+                  "out": {
+                    "tag": "var",
+                    "name": "result"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "out": {
+          "tag": "lambda",
+          "in": {
+            "tag": "app",
+            "func": {
+              "tag": "type",
+              "name": "Array"
+            },
+            "args": [
+              {
+                "tag": "var",
+                "name": "a"
+              }
+            ]
+          },
+          "out": {
+            "tag": "lambda",
+            "in": {
+              "tag": "app",
+              "func": {
+                "tag": "type",
+                "name": "Array"
+              },
+              "args": [
+                {
+                  "tag": "var",
+                  "name": "b"
+                }
+              ]
+            },
+            "out": {
+              "tag": "lambda",
+              "in": {
+                "tag": "app",
+                "func": {
+                  "tag": "type",
+                  "name": "Array"
+                },
+                "args": [
+                  {
+                    "tag": "var",
+                    "name": "c"
+                  }
+                ]
+              },
+              "out": {
+                "tag": "lambda",
+                "in": {
+                  "tag": "app",
+                  "func": {
+                    "tag": "type",
+                    "name": "Array"
+                  },
+                  "args": [
+                    {
+                      "tag": "var",
+                      "name": "d"
+                    }
+                  ]
+                },
+                "out": {
+                  "tag": "lambda",
+                  "in": {
+                    "tag": "app",
+                    "func": {
+                      "tag": "type",
+                      "name": "Array"
+                    },
+                    "args": [
+                      {
+                        "tag": "var",
+                        "name": "e"
+                      }
+                    ]
+                  },
+                  "out": {
+                    "tag": "app",
+                    "func": {
+                      "tag": "type",
+                      "name": "Array"
+                    },
+                    "args": [
+                      {
+                        "tag": "var",
+                        "name": "result"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "member",
+      "comment": "",
+      "type": {
+        "tag": "lambda",
+        "in": {
+          "tag": "var",
+          "name": "a"
+        },
+        "out": {
+          "tag": "lambda",
+          "in": {
+            "tag": "app",
+            "func": {
+              "tag": "type",
+              "name": "Array"
+            },
+            "args": [
+              {
+                "tag": "var",
+                "name": "a"
+              }
+            ]
+          },
+          "out": {
+            "tag": "type",
+            "name": "Bool"
+          }
+        }
+      }
+    },
+    {
+      "name": "reverse",
+      "comment": "Reverse an array\n\n    reverse (fromList [1,2,3]) == fromList [3,2,1]",
+      "type": {
+        "tag": "lambda",
+        "in": {
+          "tag": "app",
+          "func": {
+            "tag": "type",
+            "name": "Array"
+          },
+          "args": [
+            {
+              "tag": "var",
+              "name": "a"
+            }
+          ]
+        },
+        "out": {
+          "tag": "app",
+          "func": {
+            "tag": "type",
+            "name": "Array"
+          },
+          "args": [
+            {
+              "tag": "var",
+              "name": "a"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
+
+]
