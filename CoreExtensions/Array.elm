@@ -97,8 +97,10 @@ reverse array =
 
   in iterate 0
 
-{-| Initialize a 2 dimensional array. `initialize n m f` creates an `n x m`
-array with the element at index `(i,j)` initialized to the result of `(f i j)`
+{-| Initialize a 2 dimensional array.
+
+`initialize n m f` creates an `n x m` array with the element at index `(i,j)`
+initialized to the result of `(f i j)`
 
     initialize2 2 3 (,) ==
       fromList [fromList [(0,0), (0,1), (0,2)],
