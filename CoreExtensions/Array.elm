@@ -5,7 +5,7 @@ either missing or simply not present from the core Array Library. The goal is
 to make arrays as easy to use as lists.
 
 # Basics
-@docs member, indexOf, reverse
+@docs head, tail, isEmpty, member, indexOf, reverse
 
 # Create arrays
 @docs initialize2, initialize3
@@ -25,10 +25,22 @@ to make arrays as easy to use as lists.
 # Special maps
 @docs concatMap
 
+# Special folds
+@docs foldlSafe, foldrSafe, sum, product, minimum, maximum
+
 -}
 
+import CoreExtensions.Basics (..)
 import Array (..)
 
+head : Array a -> Maybe a
+head = get 0
+
+tail : Array a -> Array a
+tail array = slice 1 (length array - 1) array
+
+isEmpty : Array a -> Bool
+isEmpty array = (length array) == 0
 
 member : a -> Array a -> Bool
 member element array =
@@ -343,3 +355,31 @@ unzip5 array =
      map third  array,
      map fourth array,
      map fifth  array)
+
+
+foldlSafe : (a -> a -> a) -> Array a -> Maybe a
+foldlSafe reducer array =
+  case head array of
+    Nothing -> Nothing
+    Just x  -> Just <| foldl reducer x (tail array)
+
+
+foldrSafe : (a -> a -> a) -> Array a -> Maybe a
+foldrSafe reducer array =
+  case head array of
+    Nothing -> Nothing
+    Just x  -> Just <| foldr reducer x (tail array)
+
+
+sum : Array number -> number
+sum = foldl (+) 0
+
+product : Array number -> number
+product = foldl (*) 1
+
+
+maximum : Array comparable -> Maybe comparable
+maximum = foldlSafe max
+
+minimum : Array comparable -> Maybe comparable
+minimum = foldlSafe min
