@@ -430,10 +430,10 @@ sortWith comparisonFunction array =
   case head array of
     Nothing -> empty
     Just first ->
-      let lesserFilter x =
+      let lesserFilter x = filter
             (\l -> comparisonFunction l x == LT ||
                    comparisonFunction l x == EQ)
-          greaterFilter x =
+          greaterFilter x = filter
             (\l -> comparisonFunction l x == GT)
           last = tail array
           lesser = sortWith comparisonFunction (lesserFilter first last)

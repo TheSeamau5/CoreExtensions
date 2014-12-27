@@ -15,13 +15,13 @@ either missing or simply not present from the core Basics Library.
     infinity == 1 / 0
 -}
 infinity : Float
-infinity : 1 / 0
+infinity = 1 / 0
 
 {-| Linear Interpolation.
 
     lerp 2 3 0.3 == 2.3
 -}
-lerp : Float -> Float -> Float
+lerp : Float -> Float -> Float -> Float
 lerp value1 value2 amount =
   (1 - amount) * value1 + amount * value2
 
@@ -29,7 +29,7 @@ lerp value1 value2 amount =
 
     rangeMap 25 0 100 200 300 == 225
 -}
-rangeMap : Float -> Float -> Float -> Float -> Float
+rangeMap : Float -> Float -> Float -> Float -> Float -> Float
 rangeMap value low1 high1 low2 high2 =
   let m = (low2 - high2) / (low1 - high1)
       b = low2 - m * low1
