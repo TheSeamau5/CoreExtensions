@@ -396,10 +396,6 @@ minimum = foldlSafe min
 sort : Array comparable -> Array comparable
 sort = sortWith compare
 
--- ;)
-sneakyCompose : (a -> b) -> (b -> b -> c) -> (a -> a -> c)
-sneakyCompose f g x y = g (f x) (f y)
-
 
 {-| Sort values by a derived property.
 
@@ -413,7 +409,7 @@ sneakyCompose f g x y = g (f x) (f y)
     sortBy String.length (fromList ["mouse","cat"]) == fromList ["cat","mouse"]
 -}
 sortBy : (a -> comparable) -> Array a -> Array a
-sortBy accessor = sortWith (sneakyCompose accessor compare)
+sortBy accessor = sortWith (compose2 accessor compare)
 
 
 {-| Sort values with a custom comparison function.
